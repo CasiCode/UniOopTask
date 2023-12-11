@@ -4,12 +4,13 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.oop_task.data.db.dao.MonsterDao
 import com.oop_task.data.db.dao.PlayerDao
+import com.oop_task.data.db.entities.MonsterEntityDB
 import com.oop_task.data.db.entities.PlayerEntityDB
 
 @Database(
     entities = [
         PlayerEntityDB::class,
-        CreatureEntityDB::class
+        MonsterEntityDB::class
     ],
     version = AppDatabase.VERSION
 )

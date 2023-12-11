@@ -1,4 +1,4 @@
-package com.oop_task.data.db.jackson
+package com.oop_task.data.jackson
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
