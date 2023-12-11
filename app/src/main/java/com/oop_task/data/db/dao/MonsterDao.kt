@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MonsterDao {
     @Insert
-    suspend fun save(player: MonsterEntityDB)
+    suspend fun save(monster: MonsterEntityDB)
 
     @Query("update ${MonsterEntityDB.TABLE_NAME} " +
             "set name = :name, maxHealthPoints = :maxHealthPoints, healthPoints = :healthPoints, " +
@@ -30,14 +30,14 @@ interface MonsterDao {
     suspend fun deleteByID(id: String)
 
     @Delete
-    suspend fun delete(player: MonsterEntityDB)
+    suspend fun delete(monster: MonsterEntityDB)
 
     @Query("select * from ${MonsterEntityDB.TABLE_NAME} where id = :id")
-    suspend fun getPlayerByID(id: String): MonsterEntityDB
+    suspend fun getMonsterByID(id: String): MonsterEntityDB
 
     @Query("select * from ${MonsterEntityDB.TABLE_NAME}")
-    suspend fun getPlayers(): List<MonsterEntityDB>
+    suspend fun getMonsters(): List<MonsterEntityDB>
 
     @Query("select * from ${MonsterEntityDB.TABLE_NAME}")
-    fun getNotesFlow(): Flow<List<MonsterEntityDB>>
+    fun getMonstersFlow(): Flow<List<MonsterEntityDB>>
 }

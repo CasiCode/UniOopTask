@@ -41,5 +41,5 @@ interface PlayerDao {
     suspend fun getPlayers(): List<PlayerEntityDB>
 
     @Query("select * from ${PlayerEntityDB.TABLE_NAME}")
-    fun getNotesFlow(): Flow<List<PlayerEntityDB>>
+    fun getPlayersFlow(): Flow<List<PlayerEntityDB>>
 }
