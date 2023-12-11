@@ -1,4 +1,4 @@
-package com.oop_task.data.db.jackson.entities
+package com.oop_task.data.jackson.entities
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName

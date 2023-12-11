@@ -1,7 +1,7 @@
 package com.oop_task.engine.entities
 
 import com.oop_task.data.db.entities.MonsterEntityDB
-import com.oop_task.data.db.jackson.entities.MonsterEntityXML
+import com.oop_task.data.jackson.entities.MonsterEntityXML
 import com.oop_task.values.NonNumericValues.BASE_MONSTER_NAME
 
 // TODO(ИЗБАВИТЬСЯ ОТ МАГИЧЕСКИХ ЗНАЧЕНИЙ)

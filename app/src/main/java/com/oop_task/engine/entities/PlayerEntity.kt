@@ -1,7 +1,7 @@
 package com.oop_task.engine.entities
 
 import com.oop_task.data.db.entities.PlayerEntityDB
-import com.oop_task.data.db.jackson.entities.PlayerEntityXML
+import com.oop_task.data.jackson.entities.PlayerEntityXML
 import com.oop_task.engine.IOEngine
 import com.oop_task.values.NonNumericValues
 import com.oop_task.values.NonNumericValues.BASE_PLAYER_NAME
