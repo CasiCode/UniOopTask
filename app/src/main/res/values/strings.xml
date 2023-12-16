@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">oop_task</string>
+    <string name="item_entity_id_title_textview">id:</string>
+    <string name="entity_alertdialog_title">Сущность</string>
+    <string name="entity_alertdialog_negativebutton">Удалить</string>
+    <string name="entity_list_toolbar_text">Сущности</string>
 </resources>

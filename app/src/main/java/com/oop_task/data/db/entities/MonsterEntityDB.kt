@@ -9,14 +9,14 @@ import com.oop_task.engine.entities.MonsterEntity
 @JsonRootName("MonsterEntity")
 @Entity(tableName = MonsterEntityDB.TABLE_NAME)
 data class MonsterEntityDB(
-    @PrimaryKey @set:JsonProperty("ID") var id: String? = null,
-    @set:JsonProperty("Name") var name: String? = null,
-    @set:JsonProperty("MaxHealthPoints") var maxHealthPoints: Int? = null,
-    @set:JsonProperty("HealthPoints") var healthPoints: Int? = null,
-    @set:JsonProperty("AttackPoints") var attackPoints: Int? = null,
-    @set:JsonProperty("DefencePoints") var defencePoints: Int? = null,
-    @set:JsonProperty("DamageRangeStart") var damageRangeStart: Int? = null,
-    @set:JsonProperty("damageRangeEnd") var damageRangeEnd: Int? = null
+    var id: String? = null,
+    var name: String? = null,
+    var maxHealthPoints: Int? = null,
+    var healthPoints: Int? = null,
+    var attackPoints: Int? = null,
+    var defencePoints: Int? = null,
+    var damageRangeStart: Int? = null,
+    var damageRangeEnd: Int? = null
 ) {
     fun map() = MonsterEntity(this)
 
