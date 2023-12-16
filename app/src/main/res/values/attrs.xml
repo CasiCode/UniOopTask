@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="customToolbarItemsColor" format="reference"/>
+    <attr name="customColorPrimary" format="reference"/>
+    <attr name="customColorSecondary" format="reference"/>
+</resources>

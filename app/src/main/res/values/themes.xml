@@ -1,9 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Oop_task" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.Lesson_08_Pitsunov" parent="Theme.Material3.Light.NoActionBar">
+        <item name="customColorPrimary">@color/orange2d</item>
+        <item name="customColorSecondary">@color/orange26</item>
+        <item name="customToolbarItemsColor">@color/white</item>
+        <item name="android:statusBarColor">@color/orange26</item>
     </style>
 
-    <style name="Theme.Oop_task" parent="Base.Theme.Oop_task" />
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.Lesson_08_Pitsunov" parent="Base.Theme.Lesson_08_Pitsunov" />
 </resources>
