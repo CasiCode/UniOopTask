@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MonsterEntity>
+    <ID>Test id</ID>
+    <Name>Test name</Name>
+    <MaxHealthPoints>6</MaxHealthPoints>
+    <HealthPoints>5</HealthPoints>
+    <AttackPoints>5</AttackPoints>
+    <DefencePoints>5</DefencePoints>
+    <DamageRangeStart>1</DamageRangeStart>
+    <DamageRangeEnd>6</DamageRangeEnd>
+</MonsterEntity>

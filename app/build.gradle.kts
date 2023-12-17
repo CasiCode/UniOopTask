@@ -60,8 +60,10 @@ dependencies {
     // reflection-free flavor
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.+")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.16.+")
+    implementation("com.fasterxml.woodstox:woodstox-core:6.5.1")
+    implementation("javax.xml.stream:stax-api:1.0-2")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

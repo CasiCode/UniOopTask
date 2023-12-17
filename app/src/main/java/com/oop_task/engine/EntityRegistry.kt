@@ -14,27 +14,22 @@ class EntityRegistry {
     fun register(entity: CreatureEntity) {
         entities[entity.id] = entity
         entityIDs.add(entity.id)
-
-        val msg: String = buildString {
-            append(SYSTEM_MESSAGE_PREFIX)
-            append(" Entity ")
-            append(entity.name)
-            append(" was registered.")
-        }
-        IOEngine.registerMessage(msg)
+        IOEngine.registerSystemMessage("Entity id: ${entity.id} was registered")
     }
 
     fun deregister(entity: CreatureEntity) {
         entities.remove(entity.id)
         entityIDs.remove(entity.id)
+        IOEngine.registerSystemMessage("Entity id: ${entity.id} was deregistered")
     }
 
     fun deregisterByID(id: String) {
         entities.remove(id)
         entityIDs.remove(id)
+        IOEngine.registerSystemMessage("Entity id: $id was deregistered")
     }
 
-    fun forEach(action: (CreatureEntity) -> Unit): Unit {
+    fun forEach(action: (CreatureEntity) -> Unit) {
         for (entity in entities) action(entity.value)
     }
 
@@ -50,10 +45,19 @@ class EntityRegistry {
         }
     }
 
-    fun deregisterDead() {
-        entities.forEach { (_, entity) ->
-            if (entity.isDead) deregister(entity)
+    fun deregisterAllOf(entities: List<CreatureEntity>) {
+        entities.forEach {
+            deregister(it)
         }
+    }
+
+    // thrown java.util.ConcurrentModificationException previously
+    fun deregisterDead() {
+        val toDeregister = mutableListOf<CreatureEntity>()
+        entities.forEach { (_, entity) ->
+            if (entity.isDead) toDeregister.add(entity)
+        }
+        deregisterAllOf(toDeregister)
     }
 
     fun clear() {

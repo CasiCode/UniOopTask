@@ -1,17 +1,37 @@
 package com.oop_task.engine
 
-object IOEngine {
-    private val messages = mutableListOf<String>()
+import com.oop_task.values.NonNumericValues
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.onCompletion
 
-    fun registerMessage(msg: String) {
-        messages.add(msg)
+object IOEngine {
+    private val _messages = MutableStateFlow(mutableListOf(""))
+    val messages = _messages.asStateFlow().onCompletion { _messages.value.clear() }
+
+    private fun registerMessage(msg: String) {
+        _messages.value.add(msg)
     }
 
-    // TODO(Мгновенная обработка регистрации (лупер в корутине))
-    private fun displayMessages() {
-        messages.forEach {
-            TODO()
+    fun clearMessages() {
+        _messages.value.clear()
+    }
+
+    fun registerSystemMessage(msg: String) {
+        val message = buildString {
+            append(NonNumericValues.SYSTEM_MESSAGE_PREFIX)
+            append(" ")
+            append(msg)
         }
-        messages.clear()
+        registerMessage(message)
+    }
+
+    fun registerGameMessage(msg: String) {
+        val message = buildString {
+            append(NonNumericValues.GAME_MESSAGE_PREFIX)
+            append(" ")
+            append(msg)
+        }
+        registerMessage(message)
     }
 }

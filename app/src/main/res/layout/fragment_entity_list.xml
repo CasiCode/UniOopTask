@@ -52,7 +52,7 @@
         android:backgroundTint="?attr/customColorPrimary"
         app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.ThisApp.Button.Rounded"
         android:importantForAccessibility="no" />
 </androidx.constraintlayout.widget.ConstraintLayout>

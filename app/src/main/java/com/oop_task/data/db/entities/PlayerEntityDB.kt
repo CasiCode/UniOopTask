@@ -9,15 +9,15 @@ import com.oop_task.engine.entities.PlayerEntity
 @JsonRootName("PlayerEntity")
 @Entity(tableName = PlayerEntityDB.TABLE_NAME)
 data class PlayerEntityDB(
-    @PrimaryKey var id: String? = null,
-    var name: String? = null,
-    var maxHealthPoints: Int? = null,
-    var healthPoints: Int? = null,
-    var attackPoints: Int? = null,
-    var defencePoints: Int? = null,
-    var damageRangeStart: Int? = null,
-    var damageRangeEnd: Int? = null,
-    var healthPotionsAmount: Int? = null,
+    @PrimaryKey var id: String,
+    var name: String,
+    var maxHealthPoints: Int,
+    var healthPoints: Int,
+    var attackPoints: Int,
+    var defencePoints: Int,
+    var damageRangeStart: Int,
+    var damageRangeEnd: Int,
+    var healthPotionsAmount: Int,
 ) {
     fun map() = PlayerEntity(this)
 
