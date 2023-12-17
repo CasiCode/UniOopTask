@@ -40,23 +40,14 @@ class Fight(
     }
 
     private fun onStart() {
-        var fighting = true
-        while (fighting) {
+        while (true) {
             if (monsterRegistry.isEmpty()) {
-                val msg = buildString {
-                    append(GAME_MESSAGE_PREFIX)
-                    append(" The players have won!")
-                }
-                IOEngine.registerMessage(msg)
-                fighting = false
+                IOEngine.registerGameMessage("The players have won!")
+                break
             }
             if (playerRegistry.isEmpty()) {
-                val msg = buildString {
-                    append(GAME_MESSAGE_PREFIX)
-                    append(" The monsters have won.")
-                }
-                IOEngine.registerMessage(msg)
-                fighting = false
+                IOEngine.registerGameMessage("The monsters have won.")
+                break
             }
             makePlayerMoves()
             makeMonsterMoves()

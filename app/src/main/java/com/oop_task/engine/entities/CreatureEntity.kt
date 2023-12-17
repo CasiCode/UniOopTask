@@ -69,27 +69,13 @@ open class CreatureEntity(
 
     protected fun onDeath() {
         isDead = true
-        val msg: String = buildString {
-            append(GAME_MESSAGE_PREFIX)
-            append(" ")
-            append(name)
-            append(" is now dead.")
-        }
-        IOEngine.registerMessage(msg)
+        IOEngine.registerGameMessage("$name is now dead.")
     }
 
     fun recieveDamage(damage: Int) {
         if (damage <= 0) error("cannot damage a creature with less than 0 points of damage")
+        IOEngine.registerGameMessage("$name got $damage points of damage")
         healthPoints -= damage
-        val msg: String = buildString {
-            append(GAME_MESSAGE_PREFIX)
-            append(" ")
-            append(name)
-            append(" got ")
-            append(damage)
-            append(" points of damage")
-        }
-        IOEngine.registerMessage(msg)
     }
 
     // all the creature's fields are public, that's awful
@@ -97,16 +83,7 @@ open class CreatureEntity(
         if (target == null) {
             return
         }
-
-        var msg: String = buildString {
-            append(GAME_MESSAGE_PREFIX)
-            append(" ")
-            append(name)
-            append(" attacked ")
-            append(target.name)
-            append(" points of damage")
-        }
-        IOEngine.registerMessage(msg)
+        IOEngine.registerGameMessage("$name attacked ${target.name}")
 
         var attackModifier: Int = attackPoints - target.defencePoints + 1
         val dice = Dice(ATTACK_DICE_SIDES)
@@ -121,11 +98,7 @@ open class CreatureEntity(
         } while (attackModifier > 0)
 
         if (!successful) {
-            msg = buildString {
-                append(GAME_MESSAGE_PREFIX)
-                append(" the attack was not successful")
-            }
-            IOEngine.registerMessage(msg)
+            IOEngine.registerGameMessage("the attack was not successful")
         } else {
             target.recieveDamage(damageRange.randomOrNull() ?: 0)
         }

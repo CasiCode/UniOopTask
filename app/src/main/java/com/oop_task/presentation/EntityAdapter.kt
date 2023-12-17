@@ -19,9 +19,9 @@ class EntityAdapter : RecyclerView.Adapter<EntityViewHolder>() {
         holder.bind(entities[position])
     }
 
-    fun submitList(notes: List<CreatureEntity>) {
+    fun submitList(entities: List<CreatureEntity>) {
         this.entities.clear()
-        this.entities.addAll(notes)
+        this.entities.addAll(entities)
         notifyDataSetChanged()
     }
 

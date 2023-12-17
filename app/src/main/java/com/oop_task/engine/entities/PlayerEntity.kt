@@ -23,14 +23,14 @@ class PlayerEntity(
     damageRange
 ) {
     constructor(entity: PlayerEntityDB) : this(
-        name = entity.name ?: BASE_PLAYER_NAME,
-        maxHealthPoints = entity.maxHealthPoints ?: 10,
-        healthPoints = entity.healthPoints ?: 10,
-        attackPoints = entity.attackPoints ?: 10,
-        defencePoints = entity.defencePoints ?: 4,
+        name = entity.name,
+        maxHealthPoints = entity.maxHealthPoints,
+        healthPoints = entity.healthPoints,
+        attackPoints = entity.attackPoints,
+        defencePoints = entity.defencePoints,
         damageRange = IntRange(
-            entity.damageRangeStart ?: 3,
-            entity.damageRangeEnd ?: 6
+            entity.damageRangeStart,
+            entity.damageRangeEnd
         ),
         healthPotionsAmount = entity.healthPotionsAmount ?: 4
     )
@@ -66,13 +66,7 @@ class PlayerEntity(
         else {
             healthPoints += (healthPoints * HEALTH_POTION_MULTIPLIER).toInt()
             healthPotionsAmount -= 1
-            val msg: String = buildString {
-                append(NonNumericValues.GAME_MESSAGE_PREFIX)
-                append(" ")
-                append(name)
-                append(" used a health potion")
-            }
-            IOEngine.registerMessage(msg)
+            IOEngine.registerGameMessage("$name used a health potion")
         }
     }
 

@@ -1,11 +1,13 @@
 package com.oop_task.data.db.dao
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.oop_task.data.db.entities.MonsterEntityDB
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface MonsterDao {
     @Insert
     suspend fun save(monster: MonsterEntityDB)

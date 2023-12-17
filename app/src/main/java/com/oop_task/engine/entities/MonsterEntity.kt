@@ -21,14 +21,14 @@ class MonsterEntity(
     damageRange
 ) {
     constructor(entity: MonsterEntityDB) : this(
-        name = entity.name ?: BASE_MONSTER_NAME,
-        maxHealthPoints = entity.maxHealthPoints ?: 5,
-        healthPoints = entity.healthPoints ?: 5,
-        attackPoints = entity.attackPoints ?: 5,
-        defencePoints = entity.defencePoints ?: 3,
+        name = entity.name,
+        maxHealthPoints = entity.maxHealthPoints,
+        healthPoints = entity.healthPoints,
+        attackPoints = entity.attackPoints,
+        defencePoints = entity.defencePoints,
         damageRange = IntRange(
-            entity.damageRangeStart ?: 2,
-            entity.damageRangeEnd ?: 4
+            entity.damageRangeStart,
+            entity.damageRangeEnd
         )
     )
 

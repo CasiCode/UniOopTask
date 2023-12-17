@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.oop_task" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Base.Theme.Oop_task" parent="Theme.Material3.Light.NoActionBar">
         <item name="customColorPrimary">@color/orange2d</item>
         <item name="customColorSecondary">@color/orange26</item>
         <item name="customToolbarItemsColor">@color/white</item>

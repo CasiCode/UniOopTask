@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.oop_task.R
-import com.oop_task.data.db.DatabaseClient
 import com.oop_task.databinding.FragmentEntityListBinding
-import com.oop_task.engine.entities.CreatureEntity
 import kotlinx.coroutines.launch
 
 class EntityListFragment: Fragment() {
@@ -44,7 +42,7 @@ class EntityListFragment: Fragment() {
                         getString(R.string.entity_alertdialog_negativebutton)
                     ) { _, _ ->
                         lifecycleScope.launch {
-                            DatabaseClient.noteDao(requireContext()).delete(entity)
+                            TODO()//DatabaseClient.noteDao(requireContext()).delete(entity)
                         }
                     }
                     show()
@@ -56,22 +54,22 @@ class EntityListFragment: Fragment() {
             binding.gameLogFab.setOnClickListener {
                 navigationController?.navigate(GameLogFragment.newInstance())
             }
-            lifecycleScope.launch {
-                DatabaseClient.playerDao(requireContext())
-                    .getPlayersFlow()
-                    .collect { players ->
-                        players.forEach {
-                            entities.add(it.map() as CreatureEntity)
-                        }
-                    }
-                DatabaseClient.monsterDao(requireContext())
-                    .getMonstersFlow()
-                    .collect() { monsters ->
-                        monsters.forEach {
-                            entities.add(it.map() as CreatureEntity)
-                        }
-                    }
-            }
+//            lifecycleScope.launch {
+//                merge(
+//                    DatabaseClient.playerDao(requireContext()).getPlayersFlow(),
+//                    DatabaseClient.monsterDao(requireContext()).getMonstersFlow()
+//                ).collect() { creatures ->
+//                    mutableListOf<CreatureEntity>().apply {
+//                        creatures.filterIsInstance(PlayerEntityDB::class.java).forEach {
+//                            this.add(it.map())
+//                        }
+//                        creatures.filterIsInstance(MonsterEntityDB::class.java).forEach {
+//                            this.add(it.map())
+//                        }
+//                        adapter.submitList(this)
+//                    }
+//                }
+//            }
         }
     }
 
