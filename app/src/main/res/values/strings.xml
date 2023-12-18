@@ -6,4 +6,7 @@
     <string name="entity_list_toolbar_text">Сущности</string>
     <string name="entity_creation_name_textview">Имя:</string>
     <string name="item_entity_name_textview">Name:</string>
+    <string name="create_xml_menuitem">Create XML</string>
+    <string name="add_to_db_from_xml_menuitem">add to DB from XML</string>
+    <string name="output_xml">Output XML</string>
 </resources>

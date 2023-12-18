@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.oop_task.data.jackson.entities.EntityListXML
 import java.io.File
 import java.io.FileWriter
 
@@ -18,6 +19,24 @@ object XmlIOMapper {
     inline fun <reified T : Any> write(context: Context, filename: String, obj: T) {
         try {
             val xml = mapper.writeValueAsString(obj)
+            val dir = File(context.filesDir, "xml")
+            if (!dir.exists()) {
+                dir.mkdir()
+            }
+            val file = File(dir, filename)
+            FileWriter(file).apply {
+                append(xml)
+                flush()
+                close()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun writeEntityList(context: Context, filename: String, list: EntityListXML) {
+        try {
+            val xml = mapper.writeValueAsString(list)
             val dir = File(context.filesDir, "xml")
             if (!dir.exists()) {
                 dir.mkdir()

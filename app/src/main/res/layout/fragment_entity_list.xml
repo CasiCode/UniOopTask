@@ -16,7 +16,8 @@
         app:navigationIconTint="?attr/customToolbarItemsColor"
         app:title="@string/entity_list_toolbar_text"
         app:titleTextColor="?attr/customToolbarItemsColor"
-        android:background="?attr/customColorPrimary"/>
+        android:background="?attr/customColorPrimary"
+        app:menu="@menu/xml_menu"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
