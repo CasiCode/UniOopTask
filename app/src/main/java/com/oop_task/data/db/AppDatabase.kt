@@ -4,7 +4,6 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.oop_task.data.db.dao.MonsterDao
 import com.oop_task.data.db.dao.PlayerDao
-import com.oop_task.data.db.dao.SharedDao
 import com.oop_task.data.db.entities.MonsterEntityDB
 import com.oop_task.data.db.entities.PlayerEntityDB
 
@@ -18,7 +17,6 @@ import com.oop_task.data.db.entities.PlayerEntityDB
 abstract class AppDatabase: RoomDatabase() {
     abstract fun playerDao(): PlayerDao
     abstract fun monsterDao(): MonsterDao
-    abstract fun sharedDao(): SharedDao
 
     companion object {
         const val NAME = "app_dp"

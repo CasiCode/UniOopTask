@@ -20,6 +20,7 @@ class EntityViewHolder(
 
     fun bind(entity: CreatureEntity) = with(binding) {
         idTextView.text = entity.id
+        binding.nameTextView.text = entity.name
         root.setOnLongClickListener {
             entityLongClickListener.onLongClick(entity)
             true
