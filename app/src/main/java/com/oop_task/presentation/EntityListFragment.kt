@@ -3,6 +3,7 @@ package com.oop_task.presentation
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.oop_task.R
+import com.oop_task.data.db.DatabaseClient
+import com.oop_task.data.db.entities.MonsterEntityDB
+import com.oop_task.data.db.entities.PlayerEntityDB
 import com.oop_task.databinding.FragmentEntityListBinding
+import com.oop_task.engine.entities.CreatureEntity
+import com.oop_task.engine.entities.MonsterEntity
+import com.oop_task.engine.entities.PlayerEntity
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.launch
 
 class EntityListFragment: Fragment() {
@@ -34,6 +43,12 @@ class EntityListFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.addFab.setOnClickListener {
+            navigationController?.navigate(EntityCreationFragment.newInstance())
+        }
+        binding.gameLogFab.setOnClickListener {
+            navigationController?.navigate(GameLogFragment.newInstance())
+        }
         binding.recyclerView.adapter = adapter.apply {
             entityLongClickListener = EntityLongClickListener { entity ->
                 AlertDialog.Builder(requireContext()).apply {
@@ -42,34 +57,29 @@ class EntityListFragment: Fragment() {
                         getString(R.string.entity_alertdialog_negativebutton)
                     ) { _, _ ->
                         lifecycleScope.launch {
-                            TODO()//DatabaseClient.noteDao(requireContext()).delete(entity)
+                            if (entity is PlayerEntity)
+                                DatabaseClient.playerDao(requireContext()).deleteByID(entity.id)
+                            if (entity is MonsterEntity)
+                                DatabaseClient.monsterDao(requireContext()).deleteByID(entity.id)
                         }
                     }
                     show()
                 }
             }
-            binding.addFab.setOnClickListener {
-                navigationController?.navigate(EntityCreationFragment.newInstance())
+            lifecycleScope.launch {
+                DatabaseClient.sharedDao(requireContext()).getEntitiesFlow().collect { creatures ->
+                    mutableListOf<CreatureEntity>().apply {
+                        creatures.filterIsInstance(PlayerEntityDB::class.java).forEach {
+                            this.add(it.map())
+                        }
+                        creatures.filterIsInstance(MonsterEntityDB::class.java).forEach {
+                            this.add(it.map())
+                        }
+                        Log.d("FRAGMENT_LIST", this.toString())
+                        adapter.submitList(this)
+                    }
+                }
             }
-            binding.gameLogFab.setOnClickListener {
-                navigationController?.navigate(GameLogFragment.newInstance())
-            }
-//            lifecycleScope.launch {
-//                merge(
-//                    DatabaseClient.playerDao(requireContext()).getPlayersFlow(),
-//                    DatabaseClient.monsterDao(requireContext()).getMonstersFlow()
-//                ).collect() { creatures ->
-//                    mutableListOf<CreatureEntity>().apply {
-//                        creatures.filterIsInstance(PlayerEntityDB::class.java).forEach {
-//                            this.add(it.map())
-//                        }
-//                        creatures.filterIsInstance(MonsterEntityDB::class.java).forEach {
-//                            this.add(it.map())
-//                        }
-//                        adapter.submitList(this)
-//                    }
-//                }
-//            }
         }
     }
 

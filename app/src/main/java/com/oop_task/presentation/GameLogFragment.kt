@@ -40,24 +40,16 @@ class GameLogFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.gameLogTextview.movementMethod = ScrollingMovementMethod()
         lifecycleScope.launch {
-//            val players: List<PlayerEntity> =
-//                DatabaseClient.playerDao(requireContext()).getPlayers().map {
-//                    it.map()
-//                }
-//            val monsters: List<MonsterEntity> =
-//                DatabaseClient.monsterDao(requireContext()).getMonsters().map {
-//                    it.map()
-//                }
+            val players: List<PlayerEntity> =
+                DatabaseClient.playerDao(requireContext()).getPlayers().map {
+                    it.map()
+                }
+            val monsters: List<MonsterEntity> =
+                DatabaseClient.monsterDao(requireContext()).getMonsters().map {
+                    it.map()
+                }
             IOEngine.clearMessages()
-            val players = listOf(
-                PlayerEntity(name = "Steve"),
-                PlayerEntity(name = "Alex")
-            )
-            val monsters = listOf(
-                MonsterEntity(name = "Spider"),
-                MonsterEntity(name = "Zombie")
-            )
-            val fight = Fight(players, monsters)
+            Fight(players, monsters)
             IOEngine.messages.collect { messages ->
                 binding.gameLogTextview.text = buildString {
                     messages.forEach { msg ->

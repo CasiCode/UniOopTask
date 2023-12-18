@@ -17,7 +17,6 @@ class Fight(
         onStart()
     }
 
-    // may cause issues if ids are passed by value
     private fun makePlayerMoves() {
         playerRegistry.forEach { player ->
             player as PlayerEntity

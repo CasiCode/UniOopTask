@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.oop_task.engine.entities.MonsterEntity
 
-@JsonRootName("MonsterEntity")
 @Entity(tableName = MonsterEntityDB.TABLE_NAME)
 data class MonsterEntityDB(
     @PrimaryKey var id: String,

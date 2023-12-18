@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.oop_task.data.db.dao.MonsterDao
 import com.oop_task.data.db.dao.PlayerDao
+import com.oop_task.data.db.dao.SharedDao
 
 object DatabaseClient {
     private var db: AppDatabase? = null
@@ -14,6 +15,10 @@ object DatabaseClient {
 
     fun monsterDao(context: Context): MonsterDao {
         return getInstance(context).monsterDao()
+    }
+
+    fun sharedDao(context: Context): SharedDao {
+        return getInstance(context).sharedDao()
     }
 
     private fun getInstance(context: Context): AppDatabase {
