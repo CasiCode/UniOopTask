@@ -68,6 +68,7 @@ class EntityListFragment: Fragment() {
             }
             lifecycleScope.launch {
                 DatabaseClient.sharedDao(requireContext()).getEntitiesFlow().collect { creatures ->
+                    Log.d("SHARED_LIST", creatures.toString())
                     mutableListOf<CreatureEntity>().apply {
                         creatures.filterIsInstance(PlayerEntityDB::class.java).forEach {
                             this.add(it.map())
@@ -75,7 +76,6 @@ class EntityListFragment: Fragment() {
                         creatures.filterIsInstance(MonsterEntityDB::class.java).forEach {
                             this.add(it.map())
                         }
-                        Log.d("FRAGMENT_LIST", this.toString())
                         adapter.submitList(this)
                     }
                 }

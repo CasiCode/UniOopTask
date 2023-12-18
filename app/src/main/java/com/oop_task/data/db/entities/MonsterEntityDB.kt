@@ -7,15 +7,24 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.oop_task.engine.entities.MonsterEntity
 
 @Entity(tableName = MonsterEntityDB.TABLE_NAME)
-data class MonsterEntityDB(
-    @PrimaryKey var id: String,
-    var name: String,
-    var maxHealthPoints: Int,
-    var healthPoints: Int,
-    var attackPoints: Int,
-    var defencePoints: Int,
-    var damageRangeStart: Int,
-    var damageRangeEnd: Int
+class MonsterEntityDB(
+    id: String,
+    name: String,
+    maxHealthPoints: Int,
+    healthPoints: Int,
+    attackPoints: Int,
+    defencePoints: Int,
+    damageRangeStart: Int,
+    damageRangeEnd: Int
+) : SharedEntityDB(
+    id,
+    name,
+    maxHealthPoints,
+    healthPoints,
+    attackPoints,
+    defencePoints,
+    damageRangeStart,
+    damageRangeEnd
 ) {
     fun map() = MonsterEntity(this)
 
