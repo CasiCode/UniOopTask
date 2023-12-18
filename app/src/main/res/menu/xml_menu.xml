@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/createXmlFromBDMenuItem"
+        android:title="@string/create_xml_menuitem"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/addDBfromXmlMenuItem"
+        android:title="@string/add_to_db_from_xml_menuitem"
+        app:showAsAction="never"/>
+</menu>

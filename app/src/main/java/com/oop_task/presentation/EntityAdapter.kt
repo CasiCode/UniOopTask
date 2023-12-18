@@ -19,6 +19,10 @@ class EntityAdapter : RecyclerView.Adapter<EntityViewHolder>() {
         holder.bind(entities[position])
     }
 
+    fun getList(): List<CreatureEntity> {
+        return entities
+    }
+
     fun submitList(entities: List<CreatureEntity>) {
         this.entities.clear()
         this.entities.addAll(entities)

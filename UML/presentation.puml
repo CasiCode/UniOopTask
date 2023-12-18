@@ -1,0 +1,89 @@
+@startuml
+interface com.oop_task.presentation.NavigationController {
++ void navigate(Fragment)
++ void back()
+}
+class com.oop_task.presentation.MainActivity {
++ void onCreate(Bundle?)
++ void navigate(Fragment)
++ void back()
+}
+class com.oop_task.presentation.EntityCreationFragment$Companion {
+-  KEY_ID
++ void newInstance()
+}
+class com.oop_task.presentation.EntityCreationFragment {
+-  binding
+- NavigationController? navigationController
+- Boolean isPlayer
++ void onCreateView(void,LayoutInflater,void,ViewGroup?,void,Bundle?)
++ void null()
++ void onAttach(Context)
++ void onViewCreated(View,Bundle?)
++ void onDestroyView()
+- void saveEntityToDB()
+}
+class com.oop_task.presentation.GameLogFragment$Companion {
++ void newInstance()
+}
+class com.oop_task.presentation.GameLogFragment {
+-  binding
+- NavigationController? navigationController
++ void onCreateView(void,LayoutInflater,void,ViewGroup?,void,Bundle?)
++ void null()
++ void onAttach(Context)
++ void onViewCreated(View,Bundle?)
+}
+class com.oop_task.presentation.EntityViewHolder {
+}
+class com.oop_task.presentation.XmlFragment$Companion {
++ void newInstance()
+}
+class com.oop_task.presentation.XmlFragment {
+-  binding
+- NavigationController? navigationController
++ void onCreateView(void,LayoutInflater,void,ViewGroup?,void,Bundle?)
++ void null()
++ void onAttach(Context)
++ void onViewCreated(View,Bundle?)
+}
+interface com.oop_task.presentation.EntityLongClickListener {
++ void onLongClick(CreatureEntity)
+}
+class com.oop_task.presentation.EntityAdapter {
+-  entities
++ EntityLongClickListener entityLongClickListener
++ EntityViewHolder onCreateViewHolder(ViewGroup,Int)
++ Int getItemCount()
++ void onBindViewHolder(EntityViewHolder,Int)
++ List<CreatureEntity> getList()
++ void submitList(List<CreatureEntity>)
+}
+class com.oop_task.presentation.EntityListFragment$Companion {
++ void newInstance()
+}
+class com.oop_task.presentation.EntityListFragment {
+-  binding
+- NavigationController? navigationController
+-  adapter
++ void onCreateView(void,LayoutInflater,void,ViewGroup?,void,Bundle?)
++ void null()
++ void onAttach(Context)
++ void onViewCreated(View,Bundle?)
+- void createDBfromXML()
+- void createXMLfromDB()
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.oop_task.presentation.MainActivity
+com.oop_task.presentation.NavigationController <|.. com.oop_task.presentation.MainActivity
+com.oop_task.presentation.EntityCreationFragment +.. com.oop_task.presentation.EntityCreationFragment$Companion
+androidx.fragment.app.Fragment <|-- com.oop_task.presentation.EntityCreationFragment
+com.oop_task.presentation.GameLogFragment +.. com.oop_task.presentation.GameLogFragment$Companion
+androidx.fragment.app.Fragment <|-- com.oop_task.presentation.GameLogFragment
+com.oop_task.presentation.XmlFragment +.. com.oop_task.presentation.XmlFragment$Companion
+androidx.fragment.app.Fragment <|-- com.oop_task.presentation.XmlFragment
+com.oop_task.presentation.Adapter <|-- com.oop_task.presentation.EntityAdapter
+com.oop_task.presentation.EntityListFragment +.. com.oop_task.presentation.EntityListFragment$Companion
+androidx.fragment.app.Fragment <|-- com.oop_task.presentation.EntityListFragment
+@enduml

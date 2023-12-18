@@ -52,7 +52,7 @@ class PlayerEntity(
         healthPotionsAmount = entity.healthPotionsAmount ?: 4
     )
 
-    private var healthPotionsAmount = 0
+    var healthPotionsAmount = 0
         set(value) {
             if (value < 0) error("cannot set health potions amount to negative value")
             else field = value

@@ -1,0 +1,182 @@
+@startuml
+class com.oop_task.engine.EntityRegistry {
+-  entities
+-  entityIDs
++ CreatureEntity getByID(String)
++ void register(CreatureEntity)
++ void deregister(CreatureEntity)
++ void deregisterByID(String)
++ void forEach((CreatureEntity) -> Unit)
++ void size()
++ CreatureEntity? random()
++ void registerAllOf(List<CreatureEntity>)
++ void deregisterAllOf(List<CreatureEntity>)
++ void deregisterDead()
++ void clear()
++ Boolean isEmpty()
+}
+class com.oop_task.data.jackson.entities.PlayerEntityXML {
++ id
++ name
++ maxHealthPoints
++ healthPoints
++ attackPoints
++ defencePoints
++ damageRangeStart
++ damageRangeEnd
++ healthPotionsAmount
+}
+class com.oop_task.data.db.AppDatabase$Companion {
++  NAME
++  VERSION
+}
+abstract class com.oop_task.data.db.AppDatabase {
++ PlayerDao playerDao()
++ MonsterDao monsterDao()
+}
+class com.oop_task.engine.Dice {
+- sides
++ roll()
+}
+class com.oop_task.data.jackson.XmlIOMapper {
++  mapper
++ void write(Context,String,T)
++ void writeEntityList(Context,String,EntityListXML)
++ T parseAs(Context,String)
+}
+class com.oop_task.engine.Fight {
+- playerRegistry
+- monsterRegistry
+- makePlayerMoves()
+- makeMonsterMoves()
+- onStart()
+}
+class com.oop_task.data.db.entities.MonsterEntityDB {
++ id
++ name
++ maxHealthPoints
++ healthPoints
++ attackPoints
++ defencePoints
++ damageRangeStart
++ damageRangeEnd
++ void map()
+}
+class com.oop_task.data.db.entities.MonsterEntityDB$Companion {
++  TABLE_NAME
+}
+class com.oop_task.engine.entities.CreatureEntity {
++ id
++ name
++ maxHealthPoints
++ healthPoints
++ attackPoints
++ defencePoints
++ DamageRange
++ receiveDamage()
++ attack(CreatureEntity)
+# onDeath()
+}
+class com.oop_task.data.jackson.entities.MonsterEntityXML {
++ id
++ name
++ maxHealthPoints
++ healthPoints
++ attackPoints
++ defencePoints
++ damageRangeStart
++ damageRangeEnd
+}
+class com.oop_task.engine.entities.PlayerEntity {
++ healthPotionsAmount
++ heal()
++ canHeal()
+}
+com.oop_task.engine.entities.PlayerEntity --|> com.oop_task.engine.entities.CreatureEntity
+com.oop_task.engine.entities.MonsterEntity --|> com.oop_task.engine.entities.CreatureEntity
+class com.oop_task.engine.entities.PlayerEntity$Companion {
++  HEALTH_POTION_MULTIPLIER
+}
+com.oop_task.engine.entities.PlayerEntity +.. com.oop_task.engine.entities.PlayerEntity$Companion
+class com.oop_task.data.db.DatabaseClient {
+- AppDatabase? db
++ PlayerDao playerDao(Context)
++ MonsterDao monsterDao(Context)
+- AppDatabase getInstance(Context)
+}
+class com.oop_task.data.db.entities.PlayerEntityDB$Companion {
++  TABLE_NAME
+}
+class com.oop_task.data.db.entities.PlayerEntityDB {
++ id
++ name
++ maxHealthPoints
++ healthPoints
++ attackPoints
++ defencePoints
++ damageRangeStart
++ damageRangeEnd
++ healthPotionsAmount
++ void map()
+}
+class com.oop_task.engine.entities.MonsterEntity {
+}
+class com.oop_task.data.jackson.entities.EntityListXML {
++ players
++ monsters
+}
+class com.oop_task.engine.IOEngine {
+-  _messages
++  messages
+- void registerMessage(String)
++ void clearMessages()
++ void registerSystemMessage(String)
++ void registerGameMessage(String)
+}
+class com.oop_task.values.NumericValues {
++ Int ATTACK_DICE_SIDES
++ Int ATTACK_POINTS_MIN
++ Int ATTACK_POINTS_MAX
++ Int DEFENCE_POINTS_MIN
++ Int DEFENCE_POINTS_MAX
++ Int DEFAULT_DICE_SIDES
++ Int BASE_CREATURE_MAX_HEALTH
++ Int BASE_CREATURE_HEALTH
++ Int BASE_CREATURE_ATTACK
++ Int BASE_CREATURE_DEFENCE
++ Int BASE_CREATURE_DAMAGE_INTRANGE_START
++ Int BASE_CREATURE_DAMAGE_INTRANGE_END
+}
+interface com.oop_task.data.db.dao.PlayerDao {
++ void save(PlayerEntityDB)
++ void update(void,String,void,String,void,Int,void,Int,void,Int,void,Int,void,Int,void,Int,void,Int)
++ void deleteByID(String)
++ void delete(PlayerEntityDB)
++ PlayerEntityDB getPlayerByID(String)
++ List<PlayerEntityDB> getPlayers()
++ Flow<List<PlayerEntityDB>> getPlayersFlow()
+}
+class com.oop_task.values.NonNumericValues {
++ String GAME_MESSAGE_PREFIX
++ String SYSTEM_MESSAGE_PREFIX
++ String XML_FILE_NAME
++ String BASE_CREATURE_NAME
++ String BASE_PLAYER_NAME
++ String BASE_MONSTER_NAME
+}
+interface com.oop_task.data.db.dao.MonsterDao {
++ void save(MonsterEntityDB)
++ void update(void,String,void,String,void,Int,void,Int,void,Int,void,Int,void,Int,void,Int)
++ void deleteByID(String)
++ void delete(MonsterEntityDB)
++ MonsterEntityDB getMonsterByID(String)
++ List<MonsterEntityDB> getMonsters()
++ Flow<List<MonsterEntityDB>> getMonstersFlow()
+}
+
+
+com.oop_task.data.db.AppDatabase +.. com.oop_task.data.db.AppDatabase$Companion
+androidx.room.RoomDatabase <|-- com.oop_task.data.db.AppDatabase
+com.oop_task.data.db.entities.PlayerEntityDB +.. com.oop_task.data.db.entities.PlayerEntityDB$Companion
+com.oop_task.data.db.entities.MonsterEntityDB +.. com.oop_task.data.db.entities.MonsterEntityDB$Companion
+@enduml
