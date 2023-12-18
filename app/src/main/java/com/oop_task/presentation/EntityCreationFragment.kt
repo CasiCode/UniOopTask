@@ -45,7 +45,7 @@ class EntityCreationFragment: Fragment() {
         }
         binding.toggleButton.setOnClickListener {
             isPlayer = !isPlayer
-            binding.toggleButton.text = if (isPlayer) "Игрок" else "Монстр"
+            binding.toggleButton.text = if (isPlayer) "Player" else "Monster"
         }
     }
 
