@@ -7,6 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.oop_task.R
 import com.oop_task.databinding.ItemEntityBinding
 import com.oop_task.engine.entities.CreatureEntity
+import com.oop_task.engine.entities.PlayerEntity
 
 class EntityViewHolder(
     parent: ViewGroup,
@@ -23,5 +24,9 @@ class EntityViewHolder(
             entityLongClickListener.onLongClick(entity)
             true
         }
+        if (entity is PlayerEntity)
+            binding.entityImageView.setBackgroundResource(R.drawable.baseline_people_alt_24)
+        else
+            binding.entityImageView.setBackgroundResource(R.drawable.baseline_android_24)
     }
 }

@@ -24,9 +24,4 @@ class EntityAdapter : RecyclerView.Adapter<EntityViewHolder>() {
         this.entities.addAll(entities)
         notifyDataSetChanged()
     }
-
-    companion object {
-        const val TYPE_PLAYER = 0
-        const val TYPE_MONSTER = 1
-    }
 }

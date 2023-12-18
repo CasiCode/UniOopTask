@@ -18,6 +18,7 @@ import com.oop_task.values.NumericValues.DEFENCE_POINTS_MIN
 import java.util.UUID
 
 open class CreatureEntity(
+    val id: String = UUID.randomUUID().toString(),
     var name: String = BASE_CREATURE_NAME,
     maxHealthPoints: Int,
     healthPoints: Int,
@@ -29,7 +30,6 @@ open class CreatureEntity(
             BASE_CREATURE_DAMAGE_INTRANGE_END
         )
 ) {
-    val id: String = UUID.randomUUID().toString()
     var isDead: Boolean = false
     var maxHealthPoints: Int = BASE_CREATURE_MAX_HEALTH
         set(value) {
@@ -58,8 +58,6 @@ open class CreatureEntity(
             else field = value
         }
 
-    private val ioEngine = IOEngine
-
     init {
         this.maxHealthPoints = maxHealthPoints
         this.healthPoints = healthPoints
@@ -78,7 +76,6 @@ open class CreatureEntity(
         healthPoints -= damage
     }
 
-    // all the creature's fields are public, that's awful
     fun attack(target: CreatureEntity?) {
         if (target == null) {
             return

@@ -3,10 +3,11 @@ package com.oop_task.engine.entities
 import com.oop_task.data.db.entities.PlayerEntityDB
 import com.oop_task.data.jackson.entities.PlayerEntityXML
 import com.oop_task.engine.IOEngine
-import com.oop_task.values.NonNumericValues
 import com.oop_task.values.NonNumericValues.BASE_PLAYER_NAME
+import java.util.UUID
 
 class PlayerEntity(
+    id: String = UUID.randomUUID().toString(),
     name: String = BASE_PLAYER_NAME,
     maxHealthPoints: Int = 10,
     healthPoints: Int = 10,
@@ -15,6 +16,7 @@ class PlayerEntity(
     damageRange: IntRange = IntRange(3, 6),
     healthPotionsAmount: Int = 4
 ): CreatureEntity(
+    id,
     name,
     maxHealthPoints,
     healthPoints,
@@ -23,6 +25,7 @@ class PlayerEntity(
     damageRange
 ) {
     constructor(entity: PlayerEntityDB) : this(
+        id = entity.id,
         name = entity.name,
         maxHealthPoints = entity.maxHealthPoints,
         healthPoints = entity.healthPoints,
@@ -36,6 +39,7 @@ class PlayerEntity(
     )
 
     constructor(entity: PlayerEntityXML): this(
+        id = entity.id?: UUID.randomUUID().toString(),
         name = entity.name ?: BASE_PLAYER_NAME,
         maxHealthPoints = entity.maxHealthPoints ?: 10,
         healthPoints = entity.healthPoints ?: 10,

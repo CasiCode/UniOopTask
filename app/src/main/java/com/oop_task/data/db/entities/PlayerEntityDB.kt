@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.oop_task.engine.entities.PlayerEntity
 
-@JsonRootName("PlayerEntity")
 @Entity(tableName = PlayerEntityDB.TABLE_NAME)
 data class PlayerEntityDB(
     @PrimaryKey var id: String,
